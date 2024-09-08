@@ -14,17 +14,15 @@
         <h1>Technical Interview Flash Cards App</h1>
     </header>
     <section id="catagories">
-        <button>Java</button>
-        <button>Database</button>
-        <button>Web</button>
-        <button>Networking</button>
-        <button>Web</button>
-        <button>Http Requests</button>
-        <button>All</button>
+        <button id="java" name = "java" onclick="selectCategory(name)">Java</button>
+        <button id="database" name = "database" onclick="selectCategory(name)">Java>Database</button>
+        <button id="web" name = "web" onclick="selectCategory(name)">Web</button>
+        <button id="networking" name = "networking" onclick="selectCategory(name)">Networking</button>
+        <button id="http" name = "http" onclick="selectCategory(name)">Http Requests</button>
+        <button id="all" name = "all" onclick="selectCategory(name)">All</button>
     </section>
     <main>
-        <section>
-            <h2>Category: Java</h2>
+        <section id="category">
             <p id="question"></p>
         </section>
     </main>

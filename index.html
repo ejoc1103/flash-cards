@@ -13,18 +13,27 @@
     <header>
         <h1>Technical Interview Flash Cards App</h1>
     </header>
+    <section id="catagories">
+        <button>Java</button>
+        <button>Database</button>
+        <button>Web</button>
+        <button>Networking</button>
+        <button>Web</button>
+        <button>Http Requests</button>
+        <button>All</button>
+    </section>
     <main>
         <section>
             <h2>Category: Java</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi alias dolor repudiandae cupiditate sunt
-                possimus quibusdam cumque, non, ea voluptates dicta similique iste deserunt eum nemo sapiente magnam vel
-                velit!</p>
+            <p id="question"></p>
         </section>
     </main>
-    <div id = "buttons-div">
-        <button id="show-answer-btn">Show Answer</button>
-        <button id="next-question-btn">Next Question</button>
+    <div id="buttons-div">
+        <button id="show-answer-btn" onclick="showAnswer()">Show Answer</button>
+        <button id="next-question-btn" onclick="nextQuestion()">Next Question</button>
     </div>
+    <script src="app.js" type="text/javascript"></script>
 </body>
+
 
 </html>

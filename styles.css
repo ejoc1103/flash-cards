@@ -42,3 +42,12 @@ section p{
     padding: 10px 30px;
     flex-grow: 50;
 }
+
+#catagories {
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px;
+    padding: 20px;
+    background-color: aqua;
+}

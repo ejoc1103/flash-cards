@@ -42,51 +42,52 @@ let catName = "all";
 
 for (let i = 0; i < allLength; i++) {
     if (i < javaCollection.length) {
+        // Directly add javaCollection items
         allCollection[i] = {
             id: i,
             question: javaCollection[i].question,
             answer: javaCollection[i].answer
         }
     } else if (i < javaCollection.length + databaseCollection.length) {
-        let count = 0;
+        // Calculate index for databaseCollection
+        let index = i - javaCollection.length;
         allCollection[i] = {
             id: i,
-            question: databaseCollection[count].question,
-            answer: databaseCollection[count].answer
+            question: databaseCollection[index].question,
+            answer: databaseCollection[index].answer
         }
-        count++;
     } else if (i < javaCollection.length + databaseCollection.length + webCollection.length) {
-        let count = 0;
+        // Calculate index for webCollection
+        let index = i - (javaCollection.length + databaseCollection.length);
         allCollection[i] = {
             id: i,
-            question: webCollection[count].question,
-            answer: webCollection[count].answer
+            question: webCollection[index].question,
+            answer: webCollection[index].answer
         }
-        count++;
     } else if (i < javaCollection.length + databaseCollection.length + webCollection.length + networkingCollection.length) {
-        let count = 0;
+        // Calculate index for networkingCollection
+        let index = i - (javaCollection.length + databaseCollection.length + webCollection.length);
         allCollection[i] = {
             id: i,
-            question: networkingCollection[count].question,
-            answer: networkingCollection[count].answer
+            question: networkingCollection[index].question,
+            answer: networkingCollection[index].answer
         }
-        count++;
     } else if (i < javaCollection.length + databaseCollection.length + webCollection.length + networkingCollection.length + httpRequestCollection.length) {
-        let count = 0;
+        // Calculate index for httpRequestCollection
+        let index = i - (javaCollection.length + databaseCollection.length + webCollection.length + networkingCollection.length);
         allCollection[i] = {
             id: i,
-            question: httpRequestCollection[count].question,
-            answer: httpRequestCollection[count].answer
+            question: httpRequestCollection[index].question,
+            answer: httpRequestCollection[index].answer
         }
-        count++;
-    } else if (i < javaCollection.length + databaseCollection.length + webCollection.length + networkingCollection.length + miscCollection.length) {
-        let count = 0;
+    } else if (i < javaCollection.length + databaseCollection.length + webCollection.length + networkingCollection.length + httpRequestCollection.length + miscCollection.length) {
+        // Calculate index for miscCollection
+        let index = i - (javaCollection.length + databaseCollection.length + webCollection.length + networkingCollection.length + httpRequestCollection.length);
         allCollection[i] = {
             id: i,
-            question: miscCollection[count].question,
-            answer: miscCollection[count].answer
+            question: miscCollection[index].question,
+            answer: miscCollection[index].answer
         }
-        count++;
     }
 }
 
@@ -114,6 +115,7 @@ if (allCollection[selector].iKnowThis) {
 }
 
 function nextQuestion() {
+    console.log(allCollection.length)
     iKnowThis.innerHTML = ``;
     if (catName == "java") {
         selector = Math.floor(Math.random() * javaCollection.length);
@@ -235,29 +237,31 @@ function isKnown() {
         httpRequestCollection[selector].iKnowThis = true;
         knownList.push(httpRequestCollection[selector]);
     } else {
+        let index = 0;
         allCollection[selector].iKnowThis = true;
         knownList.push(allCollection[selector]);
+        console.log(knownList[index].question);
+        index = index + 1;
     }
-    if (knownList.length > 0){
-        linkToKnownList.innerHTML = `<button id="link-to-known-list" onclick = "makeList()"><a href="reset.html">View Known</a></button>`
+    if (knownList.length > 0) {
+        linkToKnownList.innerHTML = `<button id="link-to-known-list" onclick = "makeList()"><a href="reset.html" target="_blank">View Known</a></button>`
         resetSpace.innerHTML = `<button id="reset-space" onclick="resetAll()">Reset List</button>`
     }
-  
+
 }
-function resetAll(){
-    for(let i = 0; i< knownList.length; i++){
-        knownList[i].iKnowThis = false;
-    }
+function resetAll() {
+    knownList.forEach(item => {
+        item.iKnowThis = false;
+    });
+    knownList = [];
 }
 
-function makeList(){
-    for(let i = 0; i< knownList.length; i++){
-        console.log(knownList[i].question)
-        makeKnownList.innerHTML=`<p>${knownList[i].question}</p>`;
-    }
+function makeList() {
+    localStorage.setItem("knownList", JSON.stringify(knownList));
+
 }
 
-{/* <a href="reset.html">View Known</a> */}
+
 // User can add a question (maybe able to do this without a database and it would just be saved temporarily until we add back end down the road)
 
 //TODO: User needs to be able to reset questions back to unknown

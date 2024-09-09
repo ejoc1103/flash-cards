@@ -1,0 +1,13 @@
+body{
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+    background-color: aqua;
+}
+
+#knownListContainer {
+    display: grid;
+    gap: 10px 15px;
+    grid-template-columns: 3fr 1fr;
+}

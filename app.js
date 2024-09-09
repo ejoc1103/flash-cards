@@ -91,16 +91,13 @@ for (let i = 0; i < allLength; i++) {
     }
 }
 
-
-let categorySelector = -1;
-
 const question = document.getElementById('question');
 const category = document.getElementById("category");
 const iKnowThis = document.getElementById("answer-space");
 const resetSpace = document.getElementById("known-list-link");
 const linkToKnownList = document.getElementById("reset-space");
-const makeKnownList = document.getElementById("reset-list")
-
+const makeKnownList = document.getElementById("reset-list");
+const knownCounter = document.getElementById("known-counter");
 
 let selector = Math.floor(Math.random() * allCollection.length);
 
@@ -246,19 +243,22 @@ function isKnown() {
     if (knownList.length > 0) {
         linkToKnownList.innerHTML = `<button id="link-to-known-list" onclick = "makeList()"><a href="reset.html" target="_blank">View Known</a></button>`
         resetSpace.innerHTML = `<button id="reset-space" onclick="resetAll()">Reset List</button>`
+        knownCounter.innerHTML = `<p>You have marked ${knownList.length} questions as known</p>`;
     }
 
 }
+
 function resetAll() {
     knownList.forEach(item => {
         item.iKnowThis = false;
     });
     knownList = [];
+    knownCounter.innerHTML = `<p></p>`;
+    console.log(knownList.length);
 }
 
 function makeList() {
     localStorage.setItem("knownList", JSON.stringify(knownList));
-
 }
 
 

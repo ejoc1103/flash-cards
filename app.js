@@ -98,34 +98,59 @@ const category = document.getElementById("category");
 const iKnowThis = document.getElementById("answer-space");
 
 
+let selector = Math.floor(Math.random() * allCollection.length);
 
-let selector = Math.floor(Math.random() * javaCollection.length);
-
-question.innerHTML = allCollection[selector].question;
+if (allCollection[selector].iKnowThis) {
+    while (allCollection[selector].iKnowThis) {
+        console.log("Am I triggered")
+        selector = Math.floor(Math.random() * allCollection.length);
+        question.innerHTML = allCollection[selector].question;
+    }
+} else {
+    question.innerHTML = allCollection[selector].question;
+}
 
 function nextQuestion() {
+    iKnowThis.innerHTML = ``;
     if (catName == "java") {
         selector = Math.floor(Math.random() * javaCollection.length);
+        while (javaCollection[selector].iKnowThis == true) {
+            selector = Math.floor(Math.random() * javaCollection.length);
+        }
         question.innerHTML = javaCollection[selector].question;
     }
     else if (catName == "database") {
         selector = Math.floor(Math.random() * databaseCollection.length);
+        while (databaseCollection[selector].iKnowThis == true) {
+            selector = Math.floor(Math.random() * databaseCollection.length);
+        }
         question.innerHTML = databaseCollection[selector].question;
     }
     else if (catName == "web") {
         selector = Math.floor(Math.random() * webCollection.length);
+        while (webCollection[selector].iKnowThis == true) {
+            selector = Math.floor(Math.random() * webCollection.length);
+        }
         question.innerHTML = webCollection[selector].question;
     }
     else if (catName == "networking") {
         selector = Math.floor(Math.random() * networkingCollection.length);
+        while (networkingCollection[selector].iKnowThis == true) {
+            selector = Math.floor(Math.random() * networkingCollection.length);
+        }
         question.innerHTML = networkingCollection[selector].question;
     }
     else if (catName == "http") {
         selector = Math.floor(Math.random() * httpRequestCollection.length);
+        while (httpRequestCollection[selector].iKnowThis == true) {
+            selector = Math.floor(Math.random() * httpRequestCollection.length);
+        }
         question.innerHTML = httpRequestCollection[selector].question;
     } else {
-
         selector = Math.floor(Math.random() * allCollection.length);
+        while (allCollection[selector].iKnowThis == true) {
+            selector = Math.floor(Math.random() * allCollection.length);
+        }
         question.innerHTML = allCollection[selector].answer;
 
     }

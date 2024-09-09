@@ -161,6 +161,7 @@ function nextQuestion() {
 
 function showAnswer() {
     iKnowThis.innerHTML = `<button id="i-know-this" onclick="isKnown()">I Know This</button>`
+    
     if (catName == "java") {
         question.innerHTML = javaCollection[selector].answer;
     }

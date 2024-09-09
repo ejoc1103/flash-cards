@@ -96,6 +96,9 @@ let categorySelector = -1;
 const question = document.getElementById('question');
 const category = document.getElementById("category");
 const iKnowThis = document.getElementById("answer-space");
+const resetSpace = document.getElementById("known-list-link");
+const linkToKnownList = document.getElementById("reset-space");
+const makeKnownList = document.getElementById("reset-list")
 
 
 let selector = Math.floor(Math.random() * allCollection.length);
@@ -151,7 +154,7 @@ function nextQuestion() {
         while (allCollection[selector].iKnowThis == true) {
             selector = Math.floor(Math.random() * allCollection.length);
         }
-        question.innerHTML = allCollection[selector].answer;
+        question.innerHTML = allCollection[selector].question;
 
     }
 
@@ -210,40 +213,56 @@ function selectCategory(name) {
     }
 
 }
-
+let knownList = [];
 function isKnown() {
     if (catName == "java") {
         javaCollection[selector].iKnowThis = true;
+        knownList.push(javaCollection[selector]);
     }
     else if (catName == "database") {
         databaseCollection[selector].iKnowThis = true;
+        knownList.push(databaseCollection[selector]);
     }
     else if (catName == "web") {
         webCollection[selector].iKnowThis = true;
+        knownList.push(webCollection[selector]);
     }
     else if (catName == "networking") {
         networkingCollection[selector].iKnowThis = true;
+        knownList.push(networkingCollection[selector]);
     }
     else if (catName == "http") {
         httpRequestCollection[selector].iKnowThis = true;
+        knownList.push(httpRequestCollection[selector]);
     } else {
         allCollection[selector].iKnowThis = true;
+        knownList.push(allCollection[selector]);
     }
-
-
+    if (knownList.length > 0){
+        linkToKnownList.innerHTML = `<button id="link-to-known-list" onclick = "makeList()"><a href="reset.html">View Known</a></button>`
+        resetSpace.innerHTML = `<button id="reset-space" onclick="resetAll()">Reset List</button>`
+    }
+  
+}
+function resetAll(){
+    for(let i = 0; i< knownList.length; i++){
+        knownList[i].iKnowThis = false;
+    }
 }
 
-//TODO: user should have the option to select a category for questions
-// User can select all and go through all of the question
+function makeList(){
+    for(let i = 0; i< knownList.length; i++){
+        console.log(knownList[i].question)
+        makeKnownList.innerHTML=`<p>${knownList[i].question}</p>`;
+    }
+}
+
+{/* <a href="reset.html">View Known</a> */}
 // User can add a question (maybe able to do this without a database and it would just be saved temporarily until we add back end down the road)
 
-// Need and option to flip the card from question to answer
-
-//TODO: User should be able to mark a question and known so it doesn't continue to pop up
-
-
-
 //TODO: User needs to be able to reset questions back to unknown
+
+//TODO: Link known list to new page for individual reset
 
 
 

@@ -73,29 +73,46 @@ let allCollection = {
 };
 
 
-
-
-
-// Assigning all the dom elements we need
+// Assigning all the dom elements we need for main page
+const index = document.getElementsByClassName("index");
 const question = document.getElementById('question');
 const category = document.getElementById("category");
-const iKnowThis = document.getElementById("answer-space");
+const iKnowThisButton = document.getElementById("answer-space");
 const resetSpace = document.getElementById("known-list-link");
 const linkToKnownList = document.getElementById("reset-space");
 const makeKnownList = document.getElementById("reset-list");
 const knownCounter = document.getElementById("known-counter");
 const flipAnswer = document.getElementById("flip-question-answer");
+const showListButton = document.getElementById("show-list-button");
+
+// Assigning all the dom elements we need for list page
+const resetDiv = document.getElementsByClassName("reset");
+const showQuestionsButton = document.getElementById("show-questions-button");
+const thingsHeader = document.getElementById("reset-header");
+const knownListContainer = document.getElementById('knownListContainer');
 
 let catName = "all";
 let formalCatName = "All";
 let knownCount = 0;
-if (flipAnswer != null) {
-    makeAnswerButton(true);
-}
+let homePage = true;
 
-let checker = true;
+let checker = false;
 
 let selector = Math.floor(Math.random() * allCollection.questions.length);
+//Assign current question for tracking
+let currentQuestion = allCollection.questions[selector];
+
+if (homePage == true) {
+    resetDiv[0].setAttribute("id", "hidden");
+    index[0].setAttribute("id", "");
+    showAnswer();
+    resetSpace.innerHTML = `<button id="show-list-button" onClick="createResetPage()">See what I know</button>`;
+}
+
+
+
+
+
 
 //puts opening question out on the board starts from all collection
 if (question != null) {
@@ -110,8 +127,7 @@ if (question != null) {
     }
 }
 
-//Assing current question for tracking
-let currentQuestion = allCollection.questions[selector];
+
 
 
 //Selects and shows nextQuestion
@@ -119,8 +135,7 @@ function nextQuestion() {
     checker = true;
     makeAnswerButton(checker);
     let newQuestion = currentQuestion;
-    iKnowThis.innerHTML = ``;
-
+    iKnowThisButton.innerHTML = ``;
 
     while (newQuestion == currentQuestion) {
 
@@ -153,16 +168,15 @@ function nextQuestion() {
 
 //Flips question/answer button and reveals the i know this button when showing answer
 function showAnswer() {
-    console.log(currentQuestion);
     if (checker == true) {
         checker = false;
         makeAnswerButton(checker);
-        iKnowThis.innerHTML = `<button id="i-know-this" onclick="isKnown()">I Know This</button>`
+        iKnowThisButton.innerHTML = `<button id="i-know-this" onclick="isKnown()">I Know This</button>`
         question.innerHTML = currentQuestion.answer;
     } else if (checker == false) {
         checker = true;
         makeAnswerButton(checker);
-        iKnowThis.innerHTML = ``;
+        iKnowThisButton.innerHTML = ``;
         question.innerHTML = currentQuestion.question;
     }
 
@@ -190,7 +204,7 @@ function selectCategory(name) {
     }
 
     //Updates html to show right category
-    knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownList.length} questions as known out of ${allCollection.questions.length}</p>`;
+    knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownCount} questions as known out of ${allCollection.questions.length}</p>`;
 }
 
 
@@ -206,17 +220,50 @@ function isKnown() {
         }
     })
 
-    console.log(allCollection);
-
-    knownCount = tempKnownCount;
+    if (tempKnownCount != knownCount) {
+        knownCount = tempKnownCount;
+    } else {
+        tempKnownCount = -1;
+    }
 
     knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownCount} questions as known out of ${allCollection.questions.length}</p>`;
-    if (knownCount == 1) {
+    if (knownCount == 1 && tempKnownCount == 1) {
         resetSpace.innerHTML += `\n<button id="reset-space" onclick="resetAll()">Reset List</button>`;
     }
 
+}
 
+function createResetPage() {
+    homePage = false;
 
+    index[0].setAttribute("id", "hidden")
+    resetDiv[0].setAttribute("id", "");
+    showQuestionsButton.innerHTML = `<button id="show-questions-button" onClick="createResetPage()">Get Back to Work</button>`;
+
+    function createAndUpdateList() {
+        console.log("Do I get triggered");
+        allCollection.questions.forEach(item => {
+            if (item.iKnowThis) {
+                console.log(item + "is this getting hit?");
+                let questionElement = document.createElement('p');
+                let buttonElement = document.createElement('button');
+                buttonElement.onclick = function () {
+                    item.iKnowThis = false;
+                    console.log(item.iKnowThis);
+                    createAndUpdateList();
+                }
+                questionElement.textContent = item.question; // Display the question
+                buttonElement.textContent = "Set to Unknown";
+
+                resetDiv[0].appendChild(questionElement);
+                resetDiv[0].appendChild(buttonElement);
+                console.log(item.iKnowThis);
+            }
+
+        });
+    }
+
+    createAndUpdateList();
 }
 
 // resets all questions back to unknown

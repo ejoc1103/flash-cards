@@ -10,36 +10,42 @@
 </head>
 
 <body>
-    <header>
-        <h1>Technical Interview Flash Cards App</h1>
-    </header>
-    <div id="known-list-link">
-        <button id="link-to-known-list" onclick="makeList()"><a href="reset.html">View Known List</a></button>
-    </div>
-    <section id="known-counter"></section>
-    <section id="categories">
-        <button id="java" name="java" onclick="selectCategory(name)">Java</button>
-        <button id="database" name="database" onclick="selectCategory(name)">Database</button>
-        <button id="web" name="web" onclick="selectCategory(name)">Web</button>
-        <button id="networking" name="networking" onclick="selectCategory(name)">Networking</button>
-        <button id="http" name="http" onclick="selectCategory(name)">Http Requests</button>
-        <button id="all" name="all" onclick="selectCategory(name)">All</button>
-    </section>
-    <main>
-        <section id="main-section">
-            <p id="question"></p>
+    <div class="index">
+        <header>
+            <h1>Technical Interview Flash Cards App</h1>
+        </header>
+
+        <div id="known-list-link">
+        </div>
+        <section id="known-counter"></section>
+        <section id="categories">
+            <button id="java" name="java" onclick="selectCategory(name)">Java</button>
+            <button id="database" name="database" onclick="selectCategory(name)">Database</button>
+            <button id="web" name="web" onclick="selectCategory(name)">Web</button>
+            <button id="networking" name="networking" onclick="selectCategory(name)">Networking</button>
+            <button id="http" name="http" onclick="selectCategory(name)">Http Requests</button>
+            <button id="all" name="all" onclick="selectCategory(name)">All</button>
         </section>
-    </main>
-    <div id="buttons-div">
-        <button id="next-question-btn" onclick="nextQuestion()">Next Question</button>
-        <div id="flip-question-answer"></div>
-        <div id="answer-space"></div>
-        <div id="reset-space"></div>
+        <main>
+            <section id="main-section">
+                <p id="question"></p>
+            </section>
+        </main>
+        <div id="buttons-div">
+            <button id="next-question-btn" onclick="nextQuestion()">Next Question</button>
+            <div id="flip-question-answer"></div>
+            <div id="answer-space"></div>
+            <div id="reset-space"></div>
+        </div>
+    </div>
+    <div class="reset">
+        <h1 id="reset-header">Things I Know?!?!?!</h1>
+        <button id="show-questions-button"></button>
+        <div id="knownListContainer"></div>
     </div>
 
 
     <script src="app.js" type="text/javascript"></script>
-    <script src="reset.js" type="text/javascript"></script>
 </body>
 
 

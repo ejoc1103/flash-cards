@@ -84,10 +84,11 @@ const makeKnownList = document.getElementById("reset-list");
 const knownCounter = document.getElementById("known-counter");
 const flipAnswer = document.getElementById("flip-question-answer");
 const showListButton = document.getElementById("show-list-button");
+const getBackToWork = document.getElementById("get-back-to-work");
 
 // Assigning all the dom elements we need for list page
 const resetDiv = document.getElementsByClassName("reset");
-const showQuestionsButton = document.getElementById("show-questions-button");
+const showQuestionsDiv = document.getElementById("show-questions-div");
 const thingsHeader = document.getElementById("reset-header");
 const knownListContainer = document.getElementById('knownListContainer');
 
@@ -230,7 +231,19 @@ function isKnown() {
     if (knownCount == 1 && tempKnownCount == 1) {
         resetSpace.innerHTML += `\n<button id="reset-space" onclick="resetAll()">Reset List</button>`;
     }
+    nextQuestion();
 
+}
+function getBack() {
+    homePage = true;
+    if (homePage == true) {
+        resetDiv[0].setAttribute("id", "hidden");
+        index[0].setAttribute("id", "");
+        showAnswer();
+        resetSpace.innerHTML = `<button id="show-list-button" onClick="createResetPage()">See what I know</button>`;
+        resetSpace.innerHTML += `\n<button id="reset-space" onclick="resetAll()">Reset List</button>`;
+
+    }
 }
 
 function createResetPage() {
@@ -238,7 +251,8 @@ function createResetPage() {
 
     index[0].setAttribute("id", "hidden")
     resetDiv[0].setAttribute("id", "");
-    showQuestionsButton.innerHTML = `<button id="show-questions-button" onClick="createResetPage()">Get Back to Work</button>`;
+    showQuestionsDiv.innerHTML = "";
+    getBackToWork.innerHTML = `<button id="show-questions-button" onClick="getBack()">Get Back to Work</button>`;
 
     function createAndUpdateList() {
         console.log("Do I get triggered");
@@ -249,15 +263,15 @@ function createResetPage() {
                 let buttonElement = document.createElement('button');
                 buttonElement.onclick = function () {
                     item.iKnowThis = false;
-                    console.log(item.iKnowThis);
-                    createAndUpdateList();
+                    knownCount--;
+                    knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownCount} questions as known out of ${allCollection.questions.length}</p>`;
+                    createResetPage();
                 }
                 questionElement.textContent = item.question; // Display the question
                 buttonElement.textContent = "Set to Unknown";
 
-                resetDiv[0].appendChild(questionElement);
-                resetDiv[0].appendChild(buttonElement);
-                console.log(item.iKnowThis);
+                showQuestionsDiv.appendChild(questionElement);
+                showQuestionsDiv.appendChild(buttonElement);
             }
 
         });

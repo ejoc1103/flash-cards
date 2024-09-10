@@ -72,9 +72,11 @@ let allCollection = {
     questions: javaCollection.questions.concat(databaseCollection.questions, webCollection.questions, networkingCollection.questions, httpRequestCollection.questions, miscCollection.questions)
 };
 
-let catName = "all";
 
 
+
+
+// Assigning all the dom elements we need
 const question = document.getElementById('question');
 const category = document.getElementById("category");
 const iKnowThis = document.getElementById("answer-space");
@@ -86,7 +88,8 @@ const flipAnswer = document.getElementById("flip-question-answer");
 
 
 
-
+let catName = "all";
+let formalCatName = "All";
 
 makeAnswerButton(true);
 
@@ -104,83 +107,71 @@ if (allCollection.questions[selector].iKnowThis) {
     question.innerHTML = allCollection.questions[selector].question;
 }
 
+//Assing current question for tracking
+let currentQuestion = allCollection.questions[selector];
+
+
+//Selects and shows nextQuestion
 function nextQuestion() {
     checker = true;
     makeAnswerButton(checker);
-
+    let newQuestion = currentQuestion;
     iKnowThis.innerHTML = ``;
-    //Gonna use to make sure the same question doesn't return twice in a row
-    let tempSelector = selector;
-    if (catName == "all") {
-        selector = Math.floor(Math.random() * allCollection.questions.length);
-        while (allCollection.questions[selector].iKnowThis) {
-            selector = Math.floor(Math.random() * allCollection.questions.length);
-        }
-        question.innerHTML = allCollection.questions[selector].question;
-    } else {
 
-        for (let i = 0; i < allCollection.categories.length; i++) {
-            console.log(allCollection.categories[i]);
-            if (allCollection.categories[i].name == catName) {
-                console.log(allCollection.categories[i]);
-                selector = Math.floor(Math.random() * allCollection.categories[i].questions.length);
-                while (allCollection.categories[i].questions[selector].iKnowThis) {
+
+    while (newQuestion == currentQuestion) {
+
+        if (catName == "all") {
+            selector = Math.floor(Math.random() * allCollection.questions.length);
+            while (allCollection.questions[selector].iKnowThis) {
+                selector = Math.floor(Math.random() * allCollection.questions.length);
+            }
+            newQuestion = allCollection.questions[selector];
+            question.innerHTML = allCollection.questions[selector].question;
+        } else {
+
+            for (let i = 0; i < allCollection.categories.length; i++) {
+                if (allCollection.categories[i].name == catName) {
                     selector = Math.floor(Math.random() * allCollection.categories[i].questions.length);
+                    while (allCollection.categories[i].questions[selector].iKnowThis) {
+                        selector = Math.floor(Math.random() * allCollection.categories[i].questions.length);
+                    }
+                    newQuestion = allCollection.categories[i].questions[selector];
+                    question.innerHTML = allCollection.categories[i].questions[selector].question;
                 }
-                question.innerHTML = allCollection.categories[i].questions[selector].question;
             }
         }
     }
+
+    currentQuestion = newQuestion;
 
 }
 
-function showAnswer() {
-    iKnowThis.innerHTML = `<button id="i-know-this" onclick="isKnown()">I Know This</button>`
-    let type = 'answer';
 
+//Flips question/answer button and reveals the i know this button when showing answer
+function showAnswer() {
+    console.log(currentQuestion);
     if (checker == true) {
         checker = false;
         makeAnswerButton(checker);
+        iKnowThis.innerHTML = `<button id="i-know-this" onclick="isKnown()">I Know This</button>`
+        question.innerHTML = currentQuestion.answer;
     } else if (checker == false) {
         checker = true;
         makeAnswerButton(checker);
+        iKnowThis.innerHTML = ``;
+        question.innerHTML = currentQuestion.question;
     }
 
-    if (catName == "all") {
-        if (checker == false) {
-            question.innerHTML = allCollection.questions[selector].answer;
-        } else {
-            question.innerHTML = allCollection.questions[selector].question;
-        }
-    } else {
-        for (let i = 0; i < allCollection.categories.length; i++) {
-            console.log(allCollection.categories[i]);
-            if (allCollection.categories[i].name == catName) {
-                if (checker == false) {
-                    question.innerHTML = allCollection.categories[i].questions[selector].answer;
-                } else {
-                    question.innerHTML = allCollection.categories[i].questions[selector].answer;
-                }
-            }
-        }
-    }
 }
 
 
 function selectCategory(name) {
+    //Sets category name and then calls nextQuestions
     catName = name;
-    console.log(name);
-    if (catName == "all") {
-        selector = Math.floor(Math.random() * allCollection.questions.length);
-        question.innerHTML = allCollection[selector].question;
-    } else {
-        for (let i = 0; i < allCollection.categories.length; i++) {
-            if (allCollection.categories[i].name == catName) {
-                selector = Math.floor(Math.random() * allCollection.categories[i].questions.length);
-                question.innerHTML = allCollection.categories[i].questions[selector].question;
-            }
-        }
-    }
+    nextQuestion();
+
+    //Sets formal names so Catagories appear nicer on the web page
     if (catName == "all") {
         formalCatName = "All";
     } else if (catName == "java") {
@@ -194,32 +185,30 @@ function selectCategory(name) {
     } else if (catName == "networking") {
         formalCatName = "Networking";
     }
+
+    //Updates html to show right category
     knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownList.length} questions as known out of ${allCollection.questions.length}</p>`;
 }
 
 
+// initialize array to keep track of known questions Adds buttons and changes stats accordingly
 let knownList = [];
 function isKnown() {
-    if (catName == "all") {
-        allCollection.questions[selector].iKnowThis = true;
-        knownList.push(allCollection.questions[selector]);
-    } else {
-        for (let i = 0; i < allCollection.categories.length; i++) {
-            if (allCollection.categories[i].name == catName) {
-                allCollection.categories[i].questions[selector].iKnowThis = true;
-                knownList.push(allCollection.categories[i].questions[selector]);
-            }
+
+    currentQuestion.iKnowThis = true;
+    knownList.push(currentQuestion);
+
+    if (knownList.length > 0) {
+        knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownList.length} questions as known out of ${allCollection.questions.length}</p>`;
+        if (knownList.length == 1) {
+            resetSpace.innerHTML += `\n<button id="reset-space" onclick="resetAll()">Reset List</button>`;
         }
     }
 
-    if (knownList.length > 0) {
-        linkToKnownList.innerHTML = `<button id="link-to-known-list" onclick = "makeList()"><a href="reset.html">View Known</a></button>`
-        resetSpace.innerHTML = `<button id="reset-space" onclick="resetAll()">Reset List</button>`
-        knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownList.length} questions as known out of ${allCollection.questions.length}</p>`;
-    }
 
 }
 
+// resets all questions back to unknown
 function resetAll() {
     knownList.forEach(item => {
         item.iKnowThis = false;
@@ -240,23 +229,9 @@ function makeAnswerButton(checker) {
     }
 }
 
-if (catName == "all") {
-    formalCatName = "All";
-} else if (catName == "java") {
-    formalCatName = "Java"
-} else if (catName == "web") {
-    formalCatName = "Web";
-} else if (catName == "http") {
-    formalCatName = "HTTP Requests";
-} else if (catName == "database") {
-    formatCatName = "Database"
-}
-
 knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownList.length} questions as known out of ${allCollection.questions.length}</p>`;
 
 // User can add a question (maybe able to do this without a database and it would just be saved temporarily until we add back end down the road)
-
-//TODO: User needs to be able to reset questions back to unknown
 
 //TODO: Link known list to new page for individual reset
 

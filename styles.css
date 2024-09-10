@@ -3,15 +3,16 @@ body {
     display: grid;
     background-color: rgb(248, 247, 238);
     grid-template-columns: 1fr 3fr 1fr;
-    grid-template-areas: 
-    "link header header"
-    "categories stats stats"
-    "categories question question"
-    "categories question question"
-    "catagories buttons  buttons";
+    grid-template-areas:
+        "link header header"
+        "categories stats stats"
+        "categories question question"
+        "categories question question"
+        "catagories buttons  buttons";
     justify-items: center;
 }
-header{
+
+header {
     grid-area: header;
 }
 
@@ -42,27 +43,27 @@ section p {
     grid-template-columns: 1fr 1fr;
 }
 
-#link-to-known-list{
-   
-}
-
-
-
-#show-answer-btn {
+#i-know-this {
     margin: 5px;
     padding: 10px 30px;
 }
+
+#link-to-known-list {}
+
 
 #next-question-btn {
     margin: 5px;
     padding: 10px 30px;
 }
 
-#i-know-this {
+#show-answer-btn {
     margin: 5px;
     padding: 10px 30px;
 }
-#reset-space{
+
+
+
+#reset-space {
     margin: 5px;
     padding: 10px 30px;
 }
@@ -80,15 +81,16 @@ section p {
 #question {
     padding: 50px;
 }
-#main-section{
-    grid-area: question;
-}
 
-#more-buttons{
+#more-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-#known-counter{
+#known-counter {
     grid-area: stats;
+}
+
+#know-list-link {
+    grid-area: link;
 }

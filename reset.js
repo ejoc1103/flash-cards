@@ -5,12 +5,16 @@ let knownList = JSON.parse(localStorage.getItem('knownList')) || [];
 const knownListContainer = document.getElementById('knownListContainer');
 
 // Display each question as a new line in a <p> element
-knownList.forEach(item => {
-    let questionElement = document.createElement('p');
-    let buttonElement = document.createElement('button');
-    questionElement.textContent = item.question; // Display the question
-    buttonElement.textContent = "Set to Unknown";
+// knownList.forEach(item => {
+//     let questionElement = document.createElement('p');
+//     let buttonElement = document.createElement('button');
+//     questionElement.textContent = item.question; // Display the question
+//     buttonElement.textContent = "Set to Unknown";
 
-    knownListContainer.appendChild(questionElement);
-    knownListContainer.appendChild(buttonElement);
-});
+//     knownListContainer.appendChild(questionElement);
+//     knownListContainer.appendChild(buttonElement);
+
+// });
+for (let i = 0; i < knownList.length; i++) {
+    knownListContainer.innerHTML = `<p>${knownList[i].question}</p><button onClick="resetOne()">Reset</button>`;
+}

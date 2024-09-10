@@ -1,95 +1,79 @@
-let javaCollection = [
-    { id: 0, iKnowThis: false, question: "What is Polymorphism?", answer: "Definition: Allows objects to be treated as instances of their parent class, but with overridden behaviors. It can be achieved through method overriding (runtime) and method overloading (compile-time). Example: A parent class Animal has a method speak(). The child classes Dog and Cat override this method to provide different behaviors. Importance: Enables flexibility and reusability in code, allowing for cleaner, more maintainable systems." },
-    { id: 1, iKnowThis: false, question: "What is Encapsulation?", answer: "Definition: Hides the internal state of an object and restricts access to it through public methods. Example: A class BankAccount has private variables balance and public methods deposit() and withdraw() to modify the balance. Importance: Protects the integrity of the data by preventing unauthorized access or modification." },
-    { id: 2, iKnowThis: false, question: "What is Inheritance?", answer: "Definition: Allows one class to inherit properties and behavior (methods) from another class. Example: A class Vehicle can be a parent to Car and Bike, where both share common attributes like speed but also have their own unique methods. Importance: Promotes code reuse and establishes a natural hierarchy, reducing redundancy." },
-    { id: 3, iKnowThis: false, question: "What is the relationship between a class and an object?", answer: "A class is a blueprint that defines the properties and methods, while an object is an instance of that class. Example: If 'Car' is a class, 'myCar = new Car()' is an object (instance) of that class." },
-    { id: 4, iKnowThis: false, question: "What is the difference between overriding and overloading a method?", answer: "Overriding is redefining a method in a subclass, while overloading is defining multiple methods with the same name but different parameters. Example: Overriding toString() in a subclass; overloading print() to accept different argument types." },
-    { id: 5, iKnowThis: false, question: "What is the difference between an abstract class and an interface?", answer: "An abstract class can contain both abstract methods and concrete methods, while an interface can only contain abstract methods (until Java 8). Abstract classes are used when you have shared behavior, while interfaces define a contract for behavior." }];
+let javaCollection = {
+    name: "java",
+    questions: [
+        { id: 0, iKnowThis: false, question: "What is Polymorphism?", answer: "Definition: Allows objects to be treated as instances of their parent class, but with overridden behaviors. It can be achieved through method overriding (runtime) and method overloading (compile-time). Example: A parent class Animal has a method speak(). The child classes Dog and Cat override this method to provide different behaviors. Importance: Enables flexibility and reusability in code, allowing for cleaner, more maintainable systems." },
+        { id: 1, iKnowThis: false, question: "What is Encapsulation?", answer: "Definition: Hides the internal state of an object and restricts access to it through public methods. Example: A class BankAccount has private variables balance and public methods deposit() and withdraw() to modify the balance. Importance: Protects the integrity of the data by preventing unauthorized access or modification." },
+        { id: 2, iKnowThis: false, question: "What is Inheritance?", answer: "Definition: Allows one class to inherit properties and behavior (methods) from another class. Example: A class Vehicle can be a parent to Car and Bike, where both share common attributes like speed but also have their own unique methods. Importance: Promotes code reuse and establishes a natural hierarchy, reducing redundancy." },
+        { id: 3, iKnowThis: false, question: "What is the relationship between a class and an object?", answer: "A class is a blueprint that defines the properties and methods, while an object is an instance of that class. Example: If 'Car' is a class, 'myCar = new Car()' is an object (instance) of that class." },
+        { id: 4, iKnowThis: false, question: "What is the difference between overriding and overloading a method?", answer: "Overriding is redefining a method in a subclass, while overloading is defining multiple methods with the same name but different parameters. Example: Overriding toString() in a subclass; overloading print() to accept different argument types." },
+        { id: 5, iKnowThis: false, question: "What is the difference between an abstract class and an interface?", answer: "An abstract class can contain both abstract methods and concrete methods, while an interface can only contain abstract methods (until Java 8). Abstract classes are used when you have shared behavior, while interfaces define a contract for behavior." }
+    ]
+}
 
-let databaseCollection = [
-    { id: 0, iKnowThis: false, question: "What is the difference between a primary key and a foreign key?", answer: "A primary key uniquely identifies records in a table. A foreign key is a field in one table that refers to the primary key in another table, creating a relationship between the two tables." },
-    { id: 1, iKnowThis: false, question: "Give an example of using inheritance in a project.", answer: "In a project with a superclass Shape, subclasses like Circle, Rectangle, and Triangle inherit common attributes (e.g., color, area) but implement their own method for calculating area." }];
+let databaseCollection = {
+    name: "database",
+    questions: [
+        { id: 0, iKnowThis: false, question: "What is the difference between a primary key and a foreign key?", answer: "A primary key uniquely identifies records in a table. A foreign key is a field in one table that refers to the primary key in another table, creating a relationship between the two tables." },
+        { id: 1, iKnowThis: false, question: "Give an example of using inheritance in a project.", answer: "In a project with a superclass Shape, subclasses like Circle, Rectangle, and Triangle inherit common attributes (e.g., color, area) but implement their own method for calculating area." }
+    ]
+}
+let webCollection =
+{
+    name: "web",
 
-let webCollection = [
-    { id: 0, iKnowThis: false, question: "What is MVC?", answer: "MVC stands for Model-View-Controller. Model represents the data, View is what the user sees, and Controller handles input from the user and updates the Model and View accordingly." },
-    { id: 1, iKnowThis: false, question: "Why is HTTP stateless?", answer: "HTTP is stateless because each request is independent. The server doesn't retain any information about previous requests unless additional mechanisms (e.g., cookies) are used." },
-    { id: 2, iKnowThis: false, question: "What is the difference between HTTP and HTTPS?", answer: "HTTP is unencrypted, while HTTPS is encrypted using SSL/TLS to secure communication." },
-    { id: 3, iKnowThis: false, question: "What is the difference between POST and GET?", answer: "GET retrieves data from the server, while POST sends data to the server to create or update resources. GET sends parameters in the URL, whereas POST sends them in the request body." },
-    { id: 4, iKnowThis: false, question: "What is a block-level element?", answer: "A block-level element in HTML starts on a new line and takes up the full width available. Example: <div>, <p>, and <h1> are block-level elements." },
-    { id: 5, iKnowThis: false, question: "What is the difference between HTML, CSS, and JavaScript?", answer: "HTML provides the structure of a webpage, CSS controls the appearance (styles), and JavaScript enables interactive behavior on the page." },
-    { id: 6, iKnowThis: false, question: "What happens when a browser requests a web page?", answer: "The browser sends an HTTP request to the server, which processes the request and sends back an HTTP response containing the HTML, CSS, and JavaScript files to display the webpage." }];
+    questions: [
+        { id: 0, iKnowThis: false, question: "What is MVC?", answer: "MVC stands for Model-View-Controller. Model represents the data, View is what the user sees, and Controller handles input from the user and updates the Model and View accordingly." },
+        { id: 1, iKnowThis: false, question: "Why is HTTP stateless?", answer: "HTTP is stateless because each request is independent. The server doesn't retain any information about previous requests unless additional mechanisms (e.g., cookies) are used." },
+        { id: 2, iKnowThis: false, question: "What is the difference between HTTP and HTTPS?", answer: "HTTP is unencrypted, while HTTPS is encrypted using SSL/TLS to secure communication." },
+        { id: 3, iKnowThis: false, question: "What is the difference between POST and GET?", answer: "GET retrieves data from the server, while POST sends data to the server to create or update resources. GET sends parameters in the URL, whereas POST sends them in the request body." },
+        { id: 4, iKnowThis: false, question: "What is a block-level element?", answer: "A block-level element in HTML starts on a new line and takes up the full width available. Example: <div>, <p>, and <h1> are block-level elements." },
+        { id: 5, iKnowThis: false, question: "What is the difference between HTML, CSS, and JavaScript?", answer: "HTML provides the structure of a webpage, CSS controls the appearance (styles), and JavaScript enables interactive behavior on the page." },
+        { id: 6, iKnowThis: false, question: "What happens when a browser requests a web page?", answer: "The browser sends an HTTP request to the server, which processes the request and sends back an HTTP response containing the HTML, CSS, and JavaScript files to display the webpage." }
+    ]
 
-let networkingCollection = [
-    { id: 0, iKnowThis: false, question: "What is a top-level domain?", answer: "A top-level domain (TLD) is the highest level in the Domain Name System (DNS), such as .com, .org, or .net." },
-    { id: 1, iKnowThis: false, question: "What is DNS?", answer: "DNS stands for Domain Name System. It translates human-readable domain names (like www.example.com) into IP addresses that computers use to identify each other." },
-    { id: 2, iKnowThis: false, question: "What is the difference between POST and PUT?", answer: "POST is used to create a resource, while PUT is used to update an existing resource or create it if it does not exist." },
-    { id: 3, iKnowThis: false, question: "What is Client/Server?", answer: "A client requests services or resources from a server. The server processes the request and sends back the requested resource or information." },
-    { id: 4, iKnowThis: false, question: "What is Serialization?", answer: "Serialization is the process of converting an object into a stream of bytes for storage or transmission. Deserialization is the reverse process." }];
 
-let httpRequestCollection = [
-    { id: 0, iKnowThis: false, question: "What is the Message Body?", answer: "The message body contains the actual data being transmitted in an HTTP request or response. In a POST request, for example, the message body might contain form data." },
-    { id: 1, iKnowThis: false, question: "Can a GET request have a Message Body?", answer: "Technically yes, but it is not recommended or common practice since GET is meant for retrieving data and should not modify resources on the server." },
-    { id: 2, iKnowThis: false, question: "What is the Query String?", answer: "The query string is part of a URL that contains data in key-value pairs, typically after the `?`. Example: `?name=John&age=30`." },
-    { id: 3, iKnowThis: false, question: "What is a request header?", answer: "A request header provides additional information about the HTTP request, such as authentication tokens, content type, and user-agent." }];
+}
+let networkingCollection = {
 
-let miscCollection = [
-    { id: 0, iKnowThis: false, question: "What is the most interesting program you've worked on?", answer: "This is a subjective question based on personal experience. Example: 'I worked on a project that involved integrating a third-party API for weather forecasting into a mobile app.'" },
-    { id: 1, iKnowThis: false, question: "How do you validate that your code works as expected?", answer: "I validate my code through unit tests, integration tests, and manual testing. I also use debugging tools and logs to ensure that the code functions as expected." }];
+    name: "networking",
+    questions:
+        [
+            { id: 0, iKnowThis: false, question: "What is a top-level domain?", answer: "A top-level domain (TLD) is the highest level in the Domain Name System (DNS), such as .com, .org, or .net." },
+            { id: 1, iKnowThis: false, question: "What is DNS?", answer: "DNS stands for Domain Name System. It translates human-readable domain names (like www.example.com) into IP addresses that computers use to identify each other." },
+            { id: 2, iKnowThis: false, question: "What is the difference between POST and PUT?", answer: "POST is used to create a resource, while PUT is used to update an existing resource or create it if it does not exist." },
+            { id: 3, iKnowThis: false, question: "What is Client/Server?", answer: "A client requests services or resources from a server. The server processes the request and sends back the requested resource or information." },
+            { id: 4, iKnowThis: false, question: "What is Serialization?", answer: "Serialization is the process of converting an object into a stream of bytes for storage or transmission. Deserialization is the reverse process." }
+        ]
 
-let allLength = javaCollection.length + databaseCollection.length + webCollection.length + networkingCollection.length + httpRequestCollection.length + miscCollection.length;
-let allCollection = [];
+}
+let httpRequestCollection = {
+    name: "http",
+    questions:
+        [
+            { id: 0, iKnowThis: false, question: "What is the Message Body?", answer: "The message body contains the actual data being transmitted in an HTTP request or response. In a POST request, for example, the message body might contain form data." },
+            { id: 1, iKnowThis: false, question: "Can a GET request have a Message Body?", answer: "Technically yes, but it is not recommended or common practice since GET is meant for retrieving data and should not modify resources on the server." },
+            { id: 2, iKnowThis: false, question: "What is the Query String?", answer: "The query string is part of a URL that contains data in key-value pairs, typically after the `?`. Example: `?name=John&age=30`." },
+            { id: 3, iKnowThis: false, question: "What is a request header?", answer: "A request header provides additional information about the HTTP request, such as authentication tokens, content type, and user-agent." }
+        ]
+}
+
+let miscCollection = {
+    name: "misc",
+    questions:
+        [
+            { id: 0, iKnowThis: false, question: "What is the most interesting program you've worked on?", answer: "This is a subjective question based on personal experience. Example: 'I worked on a project that involved integrating a third-party API for weather forecasting into a mobile app.'" },
+            { id: 1, iKnowThis: false, question: "How do you validate that your code works as expected?", answer: "I validate my code through unit tests, integration tests, and manual testing. I also use debugging tools and logs to ensure that the code functions as expected." }
+        ]
+}
+
+let allCollection = {
+    name: "all",
+    categories: [javaCollection, databaseCollection, webCollection, networkingCollection, httpRequestCollection, miscCollection],
+    questions: javaCollection.questions.concat(databaseCollection.questions, webCollection.questions, networkingCollection.questions, httpRequestCollection.questions, miscCollection.questions)
+};
+
 let catName = "all";
 
-for (let i = 0; i < allLength; i++) {
-    if (i < javaCollection.length) {
-        // Directly add javaCollection items
-        allCollection[i] = {
-            id: i,
-            question: javaCollection[i].question,
-            answer: javaCollection[i].answer
-        }
-    } else if (i < javaCollection.length + databaseCollection.length) {
-        // Calculate index for databaseCollection
-        let index = i - javaCollection.length;
-        allCollection[i] = {
-            id: i,
-            question: databaseCollection[index].question,
-            answer: databaseCollection[index].answer
-        }
-    } else if (i < javaCollection.length + databaseCollection.length + webCollection.length) {
-        // Calculate index for webCollection
-        let index = i - (javaCollection.length + databaseCollection.length);
-        allCollection[i] = {
-            id: i,
-            question: webCollection[index].question,
-            answer: webCollection[index].answer
-        }
-    } else if (i < javaCollection.length + databaseCollection.length + webCollection.length + networkingCollection.length) {
-        // Calculate index for networkingCollection
-        let index = i - (javaCollection.length + databaseCollection.length + webCollection.length);
-        allCollection[i] = {
-            id: i,
-            question: networkingCollection[index].question,
-            answer: networkingCollection[index].answer
-        }
-    } else if (i < javaCollection.length + databaseCollection.length + webCollection.length + networkingCollection.length + httpRequestCollection.length) {
-        // Calculate index for httpRequestCollection
-        let index = i - (javaCollection.length + databaseCollection.length + webCollection.length + networkingCollection.length);
-        allCollection[i] = {
-            id: i,
-            question: httpRequestCollection[index].question,
-            answer: httpRequestCollection[index].answer
-        }
-    } else if (i < javaCollection.length + databaseCollection.length + webCollection.length + networkingCollection.length + httpRequestCollection.length + miscCollection.length) {
-        // Calculate index for miscCollection
-        let index = i - (javaCollection.length + databaseCollection.length + webCollection.length + networkingCollection.length + httpRequestCollection.length);
-        allCollection[i] = {
-            id: i,
-            question: miscCollection[index].question,
-            answer: miscCollection[index].answer
-        }
-    }
-}
 
 const question = document.getElementById('question');
 const category = document.getElementById("category");
@@ -100,68 +84,52 @@ const makeKnownList = document.getElementById("reset-list");
 const knownCounter = document.getElementById("known-counter");
 const flipAnswer = document.getElementById("flip-question-answer");
 
+
+
+
+
 makeAnswerButton(true);
 
 let checker = true;
 
-let selector = Math.floor(Math.random() * allCollection.length);
+let selector = Math.floor(Math.random() * allCollection.questions.length);
 
-if (allCollection[selector].iKnowThis) {
-    while (allCollection[selector].iKnowThis) {
-        console.log("Am I triggered")
+//puts opening question out on the board starts from all collection
+if (allCollection.questions[selector].iKnowThis) {
+    while (allCollection.questions[selector].iKnowThis) {
         selector = Math.floor(Math.random() * allCollection.length);
-        question.innerHTML = allCollection[selector].question;
+        question.innerHTML = allCollection.questions[selector].question;
     }
 } else {
-    question.innerHTML = allCollection[selector].question;
+    question.innerHTML = allCollection.questions[selector].question;
 }
 
 function nextQuestion() {
-    console.log(allCollection.length)
     checker = true;
     makeAnswerButton(checker);
-    iKnowThis.innerHTML = ``;
-    if (catName == "java") {
-        selector = Math.floor(Math.random() * javaCollection.length);
-        while (javaCollection[selector].iKnowThis == true) {
-            selector = Math.floor(Math.random() * javaCollection.length);
-        }
-        question.innerHTML = javaCollection[selector].question;
-    }
-    else if (catName == "database") {
-        selector = Math.floor(Math.random() * databaseCollection.length);
-        while (databaseCollection[selector].iKnowThis == true) {
-            selector = Math.floor(Math.random() * databaseCollection.length);
-        }
-        question.innerHTML = databaseCollection[selector].question;
-    }
-    else if (catName == "web") {
-        selector = Math.floor(Math.random() * webCollection.length);
-        while (webCollection[selector].iKnowThis == true) {
-            selector = Math.floor(Math.random() * webCollection.length);
-        }
-        question.innerHTML = webCollection[selector].question;
-    }
-    else if (catName == "networking") {
-        selector = Math.floor(Math.random() * networkingCollection.length);
-        while (networkingCollection[selector].iKnowThis == true) {
-            selector = Math.floor(Math.random() * networkingCollection.length);
-        }
-        question.innerHTML = networkingCollection[selector].question;
-    }
-    else if (catName == "http") {
-        selector = Math.floor(Math.random() * httpRequestCollection.length);
-        while (httpRequestCollection[selector].iKnowThis == true) {
-            selector = Math.floor(Math.random() * httpRequestCollection.length);
-        }
-        question.innerHTML = httpRequestCollection[selector].question;
-    } else {
-        selector = Math.floor(Math.random() * allCollection.length);
-        while (allCollection[selector].iKnowThis == true) {
-            selector = Math.floor(Math.random() * allCollection.length);
-        }
-        question.innerHTML = allCollection[selector].question;
 
+    iKnowThis.innerHTML = ``;
+    //Gonna use to make sure the same question doesn't return twice in a row
+    let tempSelector = selector;
+    if (catName == "all") {
+        selector = Math.floor(Math.random() * allCollection.questions.length);
+        while (allCollection.questions[selector].iKnowThis) {
+            selector = Math.floor(Math.random() * allCollection.questions.length);
+        }
+        question.innerHTML = allCollection.questions[selector].question;
+    } else {
+
+        for (let i = 0; i < allCollection.categories.length; i++) {
+            console.log(allCollection.categories[i]);
+            if (allCollection.categories[i].name == catName) {
+                console.log(allCollection.categories[i]);
+                selector = Math.floor(Math.random() * allCollection.categories[i].questions.length);
+                while (allCollection.categories[i].questions[selector].iKnowThis) {
+                    selector = Math.floor(Math.random() * allCollection.categories[i].questions.length);
+                }
+                question.innerHTML = allCollection.categories[i].questions[selector].question;
+            }
+        }
     }
 
 }
@@ -178,121 +146,76 @@ function showAnswer() {
         makeAnswerButton(checker);
     }
 
-
-    if (catName == "java") {
+    if (catName == "all") {
         if (checker == false) {
-            question.innerHTML = javaCollection[selector].answer;
+            question.innerHTML = allCollection.questions[selector].answer;
         } else {
-            question.innerHTML = javaCollection[selector].question;
+            question.innerHTML = allCollection.questions[selector].question;
         }
-    }
-    else if (catName == "database") {
-        if (checker == false) {
-
-            question.innerHTML = databaseCollection[selector].answer;
-        } else {
-
-            question.innerHTML = databaseCollection[selector].question;
-
-        }
-    }
-    else if (catName == "web") {
-        if (checker == false) {
-
-            question.innerHTML = webCollection[selector].answer;
-        } else {
-            question.innerHTML = webCollection[selector].question;
-        }
-    }
-    else if (catName == "networking") {
-        if (checker == false) {
-
-            question.innerHTML = networkingCollection[selector].answer;
-        } else {
-            question.innerHTML = networkingCollection[selector].question;
-        }
-    }
-    else if (catName == "http") {
-        if (checker == false) {
-            question.innerHTML = httpRequestCollection[selector].answer;
-        }
-        else {
-            question.innerHTML = httpCollection[selector].question;
-        }
-
     } else {
-        if (checker == false) {
-            question.innerHTML = allCollection[selector].answer;
-        } else {
-            question.innerHTML = allCollection[selector].question;
+        for (let i = 0; i < allCollection.categories.length; i++) {
+            console.log(allCollection.categories[i]);
+            if (allCollection.categories[i].name == catName) {
+                if (checker == false) {
+                    question.innerHTML = allCollection.categories[i].questions[selector].answer;
+                } else {
+                    question.innerHTML = allCollection.categories[i].questions[selector].answer;
+                }
+            }
         }
-
     }
-
 }
 
 
 function selectCategory(name) {
     catName = name;
     console.log(name);
-    if (name == "java") {
-        selector = Math.floor(Math.random() * javaCollection.length);
-        question.innerHTML = javaCollection[selector].question;
-    }
-    else if (name == "database") {
-        selector = Math.floor(Math.random() * databaseCollection.length);
-        question.innerHTML = databaseCollection[selector].question;
-    }
-    else if (name == "web") {
-        selector = Math.floor(Math.random() * webCollection.length);
-        question.innerHTML = webCollection[selector].question;
-    }
-    else if (name == "networking") {
-        selector = Math.floor(Math.random() * networkingCollection.length);
-        question.innerHTML = networkingCollection[selector].question;
-    }
-    else if (name == "http") {
-        selector = Math.floor(Math.random() * httpRequestCollection.length);
-        question.innerHTML = httpRequestCollection[selector].question;
-    }
-    else {
-        selector = Math.floor(Math.random() * allCollection.length);
+    if (catName == "all") {
+        selector = Math.floor(Math.random() * allCollection.questions.length);
         question.innerHTML = allCollection[selector].question;
+    } else {
+        for (let i = 0; i < allCollection.categories.length; i++) {
+            if (allCollection.categories[i].name == catName) {
+                selector = Math.floor(Math.random() * allCollection.categories[i].questions.length);
+                question.innerHTML = allCollection.categories[i].questions[selector].question;
+            }
+        }
     }
-
+    if (catName == "all") {
+        formalCatName = "All";
+    } else if (catName == "java") {
+        formalCatName = "Java"
+    } else if (catName == "web") {
+        formalCatName = "Web";
+    } else if (catName == "http") {
+        formalCatName = "HTTP Requests";
+    } else if (catName == "database") {
+        formalCatName = "Database"
+    } else if (catName == "networking") {
+        formalCatName = "Networking";
+    }
+    knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownList.length} questions as known out of ${allCollection.questions.length}</p>`;
 }
+
+
 let knownList = [];
 function isKnown() {
-    if (catName == "java") {
-        javaCollection[selector].iKnowThis = true;
-        knownList.push(javaCollection[selector]);
-    }
-    else if (catName == "database") {
-        databaseCollection[selector].iKnowThis = true;
-        knownList.push(databaseCollection[selector]);
-    }
-    else if (catName == "web") {
-        webCollection[selector].iKnowThis = true;
-        knownList.push(webCollection[selector]);
-    }
-    else if (catName == "networking") {
-        networkingCollection[selector].iKnowThis = true;
-        knownList.push(networkingCollection[selector]);
-    }
-    else if (catName == "http") {
-        httpRequestCollection[selector].iKnowThis = true;
-        knownList.push(httpRequestCollection[selector]);
+    if (catName == "all") {
+        allCollection.questions[selector].iKnowThis = true;
+        knownList.push(allCollection.questions[selector]);
     } else {
-        let index = 0;
-        allCollection[selector].iKnowThis = true;
-        knownList.push(allCollection[selector]);
-        console.log(knownList[index].question);
-        index = index + 1;
+        for (let i = 0; i < allCollection.categories.length; i++) {
+            if (allCollection.categories[i].name == catName) {
+                allCollection.categories[i].questions[selector].iKnowThis = true;
+                knownList.push(allCollection.categories[i].questions[selector]);
+            }
+        }
     }
+
     if (knownList.length > 0) {
-        linkToKnownList.innerHTML = `<button id="link-to-known-list" onclick = "makeList()"><a href="reset.html" target="_blank">View Known</a></button>`
+        linkToKnownList.innerHTML = `<button id="link-to-known-list" onclick = "makeList()"><a href="reset.html">View Known</a></button>`
         resetSpace.innerHTML = `<button id="reset-space" onclick="resetAll()">Reset List</button>`
-        knownCounter.innerHTML = `<p>You have marked ${knownList.length} questions as known</p>`;
+        knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownList.length} questions as known out of ${allCollection.questions.length}</p>`;
     }
 
 }
@@ -302,8 +225,7 @@ function resetAll() {
         item.iKnowThis = false;
     });
     knownList = [];
-    knownCounter.innerHTML = `<p></p>`;
-    console.log(knownList.length);
+    knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownList.length} questions as known out of ${allCollection.questions.length}</p>`;
 }
 
 function makeList() {
@@ -317,6 +239,20 @@ function makeAnswerButton(checker) {
         flipAnswer.innerHTML = `<button id="show-answer-btn" onclick="showAnswer()">Show Question</button>`
     }
 }
+
+if (catName == "all") {
+    formalCatName = "All";
+} else if (catName == "java") {
+    formalCatName = "Java"
+} else if (catName == "web") {
+    formalCatName = "Web";
+} else if (catName == "http") {
+    formalCatName = "HTTP Requests";
+} else if (catName == "database") {
+    formatCatName = "Database"
+}
+
+knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownList.length} questions as known out of ${allCollection.questions.length}</p>`;
 
 // User can add a question (maybe able to do this without a database and it would just be saved temporarily until we add back end down the road)
 

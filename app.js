@@ -98,6 +98,11 @@ const resetSpace = document.getElementById("known-list-link");
 const linkToKnownList = document.getElementById("reset-space");
 const makeKnownList = document.getElementById("reset-list");
 const knownCounter = document.getElementById("known-counter");
+const flipAnswer = document.getElementById("flip-question-answer");
+
+makeAnswerButton(true);
+
+let checker = true;
 
 let selector = Math.floor(Math.random() * allCollection.length);
 
@@ -113,6 +118,8 @@ if (allCollection[selector].iKnowThis) {
 
 function nextQuestion() {
     console.log(allCollection.length)
+    checker = true;
+    makeAnswerButton(checker);
     iKnowThis.innerHTML = ``;
     if (catName == "java") {
         selector = Math.floor(Math.random() * javaCollection.length);
@@ -161,23 +168,64 @@ function nextQuestion() {
 
 function showAnswer() {
     iKnowThis.innerHTML = `<button id="i-know-this" onclick="isKnown()">I Know This</button>`
-    
+    let type = 'answer';
+
+    if (checker == true) {
+        checker = false;
+        makeAnswerButton(checker);
+    } else if (checker == false) {
+        checker = true;
+        makeAnswerButton(checker);
+    }
+
+
     if (catName == "java") {
-        question.innerHTML = javaCollection[selector].answer;
+        if (checker == false) {
+            question.innerHTML = javaCollection[selector].answer;
+        } else {
+            question.innerHTML = javaCollection[selector].question;
+        }
     }
     else if (catName == "database") {
-        question.innerHTML = databaseCollection[selector].answer;
+        if (checker == false) {
+
+            question.innerHTML = databaseCollection[selector].answer;
+        } else {
+
+            question.innerHTML = databaseCollection[selector].question;
+
+        }
     }
     else if (catName == "web") {
-        question.innerHTML = webCollection[selector].answer;
+        if (checker == false) {
+
+            question.innerHTML = webCollection[selector].answer;
+        } else {
+            question.innerHTML = webCollection[selector].question;
+        }
     }
     else if (catName == "networking") {
-        question.innerHTML = networkingCollection[selector].answer;
+        if (checker == false) {
+
+            question.innerHTML = networkingCollection[selector].answer;
+        } else {
+            question.innerHTML = networkingCollection[selector].question;
+        }
     }
     else if (catName == "http") {
-        question.innerHTML = httpRequestCollection[selector].answer;
+        if (checker == false) {
+            question.innerHTML = httpRequestCollection[selector].answer;
+        }
+        else {
+            question.innerHTML = httpCollection[selector].question;
+        }
+
     } else {
-        question.innerHTML = allCollection[selector].answer;
+        if (checker == false) {
+            question.innerHTML = allCollection[selector].answer;
+        } else {
+            question.innerHTML = allCollection[selector].question;
+        }
 
     }
 
@@ -262,6 +310,13 @@ function makeList() {
     localStorage.setItem("knownList", JSON.stringify(knownList));
 }
 
+function makeAnswerButton(checker) {
+    if (checker) {
+        flipAnswer.innerHTML = `<button id="show-answer-btn" onclick="showAnswer()">Show Answer</button>`
+    } else {
+        flipAnswer.innerHTML = `<button id="show-answer-btn" onclick="showAnswer()">Show Question</button>`
+    }
+}
 
 // User can add a question (maybe able to do this without a database and it would just be saved temporarily until we add back end down the road)
 

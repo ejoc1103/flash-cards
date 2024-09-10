@@ -110,13 +110,13 @@ section p {
 .reset{
     display: grid;
     grid-template-columns: 1fr;
-    background-color: yellowgreen;
+    background-color:rgb(255, 157, 0);
 }
 
 #reset-header{
-    background-color: aqua;
+    background-color: rgb(218, 75, 142);
 }
 
 .reset button {
-    background-color: blue;
+    background-color:rgb(104, 104, 130);
 }

@@ -141,6 +141,10 @@ function nextQuestion() {
     while (newQuestion == currentQuestion) {
 
         if (catName == "all") {
+            if (knownCount == allCollection.questions.length) {
+                alert("You marked everything in this category as known! Refresh the page or mark some questions unknown");
+                return;
+            }
             selector = Math.floor(Math.random() * allCollection.questions.length);
             while (allCollection.questions[selector].iKnowThis) {
                 selector = Math.floor(Math.random() * allCollection.questions.length);
@@ -151,6 +155,10 @@ function nextQuestion() {
 
             for (let i = 0; i < allCollection.categories.length; i++) {
                 if (allCollection.categories[i].name == catName) {
+                    if (knownCount == allCollection.categories[i].questions.length) {
+                        alert("You marked everything in this category as known! Refresh the page or mark some questions unknown");
+                        return;
+                    }
                     selector = Math.floor(Math.random() * allCollection.categories[i].questions.length);
                     while (allCollection.categories[i].questions[selector].iKnowThis) {
                         selector = Math.floor(Math.random() * allCollection.categories[i].questions.length);
@@ -188,6 +196,8 @@ function selectCategory(name) {
     //Sets category name and then calls nextQuestions
     catName = name;
     nextQuestion();
+    console.log(catName);
+    isKnown();
 
     //Sets formal names so Catagories appear nicer on the web page
     if (catName == "all") {
@@ -211,15 +221,34 @@ function selectCategory(name) {
 
 // initialize array to keep track of known questions Adds buttons and changes stats accordingly
 function isKnown() {
+    console.log(catName);
     let tempKnownCount = 0;
 
     currentQuestion.iKnowThis = true;
+    let thisCollection;
+    if (catName == "all") {
 
-    allCollection.questions.forEach(question => {
-        if (question.iKnowThis) {
-            tempKnownCount++;
+        allCollection.questions.forEach(question => {
+            if (question.iKnowThis) {
+                tempKnownCount++;
+            }
+        })
+        thisCollection = allCollection;
+    } else {
+        for (let i = 0; i < allCollection.categories.length; i++) {
+
+            if (allCollection.categories[i].name == catName) {
+
+                allCollection.categories[i].questions.forEach(question => {
+                    if (question.iKnowThis) {
+                        tempKnownCount++;
+                    }
+                })
+                thisCollection = allCollection.categories[i];
+            }
         }
-    })
+
+    }
 
     if (tempKnownCount != knownCount) {
         knownCount = tempKnownCount;
@@ -227,7 +256,7 @@ function isKnown() {
         tempKnownCount = -1;
     }
 
-    knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownCount} questions as known out of ${allCollection.questions.length}</p>`;
+    knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownCount} questions as known out of ${thisCollection.questions.length}</p>`;
     if (knownCount == 1 && tempKnownCount == 1) {
         resetSpace.innerHTML += `\n<button id="reset-space" onclick="resetAll()">Reset List</button>`;
     }
@@ -282,10 +311,11 @@ function createResetPage() {
 
 // resets all questions back to unknown
 function resetAll() {
-    allCollection.question.forEach(item => {
+    allCollection.questions.forEach(item => {
         item.iKnowThis = false;
     });
     knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownCount} questions as known out of ${allCollection.questions.length}</p>`;
+    isKnown();
 }
 
 function makeAnswerButton(checker) {

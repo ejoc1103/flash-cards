@@ -4,7 +4,14 @@ body {
     justify-items: center;
     margin: 20px 50px;
     background-color: #ebb678;
-    height: 100vh;
+}
+
+button {
+    background-color: #e3612f;
+    margin: 20px;
+    padding: 15px;
+    border: 3px solid lightblue;
+    border-radius: 20%;
 }
 
 .index {
@@ -12,11 +19,10 @@ body {
     background-color: #1874a5;
     grid-template-columns: 1fr 3fr 1fr;
     grid-template-areas:
-        "link header header"
-        "categories stats stats"
+        "link header stats"
         "categories question question"
-        "catagories buttons  buttons";
-    justify-items: center;
+        "categories question question";
+    justify-content: space-between;
 }
 
 header {
@@ -30,15 +36,26 @@ section {
 }
 
 main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     grid-area: question;
     color: rgb(31, 32, 32);
     text-align: center;
     margin: 50px 40px;
-
+    width: 60%;
 }
 
-#main-section{
+#main-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #e07b39;
+    height: 50%;
+}
+
+#answer-space {
+    height: 20%;
 }
 
 section p {
@@ -46,7 +63,6 @@ section p {
 }
 
 #buttons-div {
-    grid-area: buttons;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -78,8 +94,7 @@ section p {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    margin: 20px;
-    padding: 20px;
+    padding: 10px;
     background-color: #44bcd8;
 }
 
@@ -107,16 +122,16 @@ section p {
     grid-area: link;
 }
 
-.reset{
+.reset {
     display: grid;
     grid-template-columns: 1fr;
-    background-color:rgb(255, 157, 0);
+    background-color: rgb(255, 157, 0);
 }
 
-#reset-header{
+#reset-header {
     background-color: rgb(218, 75, 142);
 }
 
 .reset button {
-    background-color:rgb(104, 104, 130);
+    background-color: rgb(104, 104, 130);
 }

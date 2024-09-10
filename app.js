@@ -86,25 +86,28 @@ const makeKnownList = document.getElementById("reset-list");
 const knownCounter = document.getElementById("known-counter");
 const flipAnswer = document.getElementById("flip-question-answer");
 
-
-
 let catName = "all";
 let formalCatName = "All";
-
-makeAnswerButton(true);
+let knownCount = 0;
+if (flipAnswer != null) {
+    makeAnswerButton(true);
+}
 
 let checker = true;
 
 let selector = Math.floor(Math.random() * allCollection.questions.length);
 
 //puts opening question out on the board starts from all collection
-if (allCollection.questions[selector].iKnowThis) {
-    while (allCollection.questions[selector].iKnowThis) {
-        selector = Math.floor(Math.random() * allCollection.length);
+if (question != null) {
+
+    if (allCollection.questions[selector].iKnowThis) {
+        while (allCollection.questions[selector].iKnowThis) {
+            selector = Math.floor(Math.random() * allCollection.length);
+            question.innerHTML = allCollection.questions[selector].question;
+        }
+    } else {
         question.innerHTML = allCollection.questions[selector].question;
     }
-} else {
-    question.innerHTML = allCollection.questions[selector].question;
 }
 
 //Assing current question for tracking
@@ -192,33 +195,36 @@ function selectCategory(name) {
 
 
 // initialize array to keep track of known questions Adds buttons and changes stats accordingly
-let knownList = [];
 function isKnown() {
+    let tempKnownCount = 0;
 
     currentQuestion.iKnowThis = true;
-    knownList.push(currentQuestion);
 
-    if (knownList.length > 0) {
-        knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownList.length} questions as known out of ${allCollection.questions.length}</p>`;
-        if (knownList.length == 1) {
-            resetSpace.innerHTML += `\n<button id="reset-space" onclick="resetAll()">Reset List</button>`;
+    allCollection.questions.forEach(question => {
+        if (question.iKnowThis) {
+            tempKnownCount++;
         }
+    })
+
+    console.log(allCollection);
+
+    knownCount = tempKnownCount;
+
+    knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownCount} questions as known out of ${allCollection.questions.length}</p>`;
+    if (knownCount == 1) {
+        resetSpace.innerHTML += `\n<button id="reset-space" onclick="resetAll()">Reset List</button>`;
     }
+
 
 
 }
 
 // resets all questions back to unknown
 function resetAll() {
-    knownList.forEach(item => {
+    allCollection.question.forEach(item => {
         item.iKnowThis = false;
     });
-    knownList = [];
-    knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownList.length} questions as known out of ${allCollection.questions.length}</p>`;
-}
-
-function makeList() {
-    localStorage.setItem("knownList", JSON.stringify(knownList));
+    knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownCount} questions as known out of ${allCollection.questions.length}</p>`;
 }
 
 function makeAnswerButton(checker) {
@@ -228,8 +234,9 @@ function makeAnswerButton(checker) {
         flipAnswer.innerHTML = `<button id="show-answer-btn" onclick="showAnswer()">Show Question</button>`
     }
 }
-
-knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownList.length} questions as known out of ${allCollection.questions.length}</p>`;
+if (knownCounter != null) {
+    knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownCount} questions as known out of ${allCollection.questions.length}</p>`;
+}
 
 // User can add a question (maybe able to do this without a database and it would just be saved temporarily until we add back end down the road)
 

@@ -19,8 +19,8 @@ button {
     grid-template-columns: 1fr 6fr 1fr;
     grid-template-areas:
         "header header header"
-        "categories question blank"
-        "categories question blank";
+        "categories question question"
+        "categories question question";
     justify-content: space-between;
 }
 
@@ -43,24 +43,19 @@ section {
 main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     grid-area: question;
-    color: rgb(31, 32, 32);
     text-align: center;
-    margin: 2% 5%;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 #main-section {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #e07b39;
-    margin: 5%;
-    flex-grow: 100;
-}
-
-#answer-space {
-    height: 20%;
+    padding: 10%;
 }
 
 section p {

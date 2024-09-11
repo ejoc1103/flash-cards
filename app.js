@@ -1,6 +1,16 @@
 let javaCollection = {
     name: "java",
+
     questions: [
+        { iKnowThis: false, question: "What is Spring Boot?", answer: "Spring Boot is a framework that simplifies the development of Java-based applications by providing pre-configured templates, auto-configuration, and a standalone server, allowing you to build production-ready applications quickly." },
+
+        { iKnowThis: false, question: "How do you define a RESTful API in Spring Boot?", answer: "In Spring Boot, you define a RESTful API using the `@RestController` annotation for the class and `@RequestMapping` or other method annotations like `@GetMapping`, `@PostMapping`, `@PutMapping`, or `@DeleteMapping` to handle specific HTTP requests." },
+
+        { iKnowThis: false, question: "What is the difference between `@RestController` and `@Controller` in Spring?", answer: "`@RestController` is a combination of `@Controller` and `@ResponseBody`, automatically serializing the returned objects into JSON or XML for HTTP responses, while `@Controller` is used for traditional MVC applications that return views." },
+
+        { iKnowThis: false, question: "What is the purpose of `application.properties` or `application.yml` in Spring Boot?", answer: "These files are used to configure application settings, such as server port, database connection details, logging level, and more. Spring Boot automatically loads these configuration files during application startup." },
+
+        { iKnowThis: false, question: "How do you connect a Spring Boot application to a database?", answer: "To connect to a database, you define the data source properties in the `application.properties` or `application.yml` file, including `spring.datasource.url`, `spring.datasource.username`, and `spring.datasource.password`, then use Spring Data JPA to interact with the database." },
         { iKnowThis: false, question: "What is Polymorphism?", answer: "Definition: Allows objects to be treated as instances of their parent class, but with overridden behaviors. It can be achieved through method overriding (runtime) and method overloading (compile-time). Example: A parent class Animal has a method speak(). The child classes Dog and Cat override this method to provide different behaviors. Importance: Enables flexibility and reusability in code, allowing for cleaner, more maintainable systems." },
         { iKnowThis: false, question: "What is Encapsulation?", answer: "Definition: Hides the internal state of an object and restricts access to it through public methods. Example: A class BankAccount has private variables balance and public methods deposit() and withdraw() to modify the balance. Importance: Protects the integrity of the data by preventing unauthorized access or modification." },
         { iKnowThis: false, question: "What is Inheritance?", answer: "Definition: Allows one class to inherit properties and behavior (methods) from another class. Example: A class Vehicle can be a parent to Car and Bike, where both share common attributes like speed but also have their own unique methods. Importance: Promotes code reuse and establishes a natural hierarchy, reducing redundancy." },
@@ -11,13 +21,37 @@ let javaCollection = {
             iKnowThis: false, question: "What is a variable", answer: `Named storage for data in a program.\nHolds values that can be referenced or changed later.\nCan store different data types (numbers, strings, etc.).\nHas scope (where it can be accessed in code).\nMutable (changeable) or immutable (constant).`
         },
         { iKnowThis: false, question: "How do you validate that your code works as expected?", answer: "I validate my code through unit tests, integration tests, and manual testing. I also use debugging tools and logs to ensure that the code functions as expected." },
-        { iKnowThis: false, question: "Give an example of using inheritance in a project.", answer: "In a project with a superclass Shape, subclasses like Circle, Rectangle, and Triangle inherit common attributes (e.g., color, area) but implement their own method for calculating area." }
+        { iKnowThis: false, question: "Give an example of using inheritance in a project.", answer: "In a project with a superclass Shape, subclasses like Circle, Rectangle, and Triangle inherit common attributes (e.g., color, area) but implement their own method for calculating area." },
+        { iKnowThis: false, question: "What is the difference between JDK, JRE, and JVM?", answer: "JVM (Java Virtual Machine) runs Java bytecode, JRE (Java Runtime Environment) provides the libraries and environment for running Java applications, and JDK (Java Development Kit) contains tools for developing Java applications, including the JRE." },
+
+        { iKnowThis: false, question: "What is the purpose of the `public`, `private`, and `protected` access modifiers in Java?", answer: "`public` makes a class or member accessible from anywhere, `private` restricts access to within the same class, and `protected` allows access to subclasses and classes within the same package." },
+
+        { iKnowThis: false, question: "What is the difference between `==` and `equals()` in Java?", answer: "`==` checks if two references point to the same object in memory, while `equals()` checks if the values of two objects are equal, typically overridden to compare the content of objects." },
+
+        { iKnowThis: false, question: "What is the purpose of the `static` keyword in Java?", answer: "`static` can be applied to variables, methods, and blocks. It means the member belongs to the class rather than an instance of the class, so it can be accessed without creating an object." },
+
+        { iKnowThis: false, question: "What is inheritance in Java?", answer: "Inheritance is a mechanism where one class acquires the properties (fields) and behaviors (methods) of another class. It allows code reuse and establishes a parent-child relationship between classes." },
+
+        { iKnowThis: false, question: "What is the purpose of the `final` keyword in Java?", answer: "`final` can be applied to variables, methods, and classes. A `final` variable’s value cannot be changed, a `final` method cannot be overridden, and a `final` class cannot be subclassed." },
+
+        { iKnowThis: false, question: "What is garbage collection in Java?", answer: "Garbage collection is the automatic memory management process in Java that deallocates memory occupied by objects that are no longer in use, freeing up resources." }
     ]
 }
 
 let databaseCollection = {
     name: "database",
     questions: [
+        { iKnowThis: false, question: "What is PostgreSQL?", answer: "PostgreSQL is an open-source, object-relational database management system known for its advanced features, like support for complex queries, data types, and full-text search." },
+
+        { iKnowThis: false, question: "What is the purpose of the `SERIAL` data type in PostgreSQL?", answer: "`SERIAL` is used to create an auto-incrementing integer column, often used for primary keys. PostgreSQL automatically generates a sequence behind the scenes." },
+
+        { iKnowThis: false, question: "What is the difference between `LIMIT` and `OFFSET` in PostgreSQL?", answer: "`LIMIT` specifies the maximum number of rows to return, while `OFFSET` skips a specified number of rows before starting to return rows. They are often used together for pagination." },
+
+        { iKnowThis: false, question: "How do you create a foreign key constraint in PostgreSQL?", answer: "You create a foreign key using: `ALTER TABLE child_table ADD CONSTRAINT fk_name FOREIGN KEY (column_name) REFERENCES parent_table (column_name);` This links the two tables." },
+
+        { iKnowThis: false, question: "What are some common PostgreSQL data types?", answer: "Common data types include `INTEGER`, `SERIAL`, `TEXT`, `VARCHAR(n)`, `BOOLEAN`, `DATE`, `TIMESTAMP`, `JSON`, and `ARRAY` for handling different types of data." },
+
+        { iKnowThis: false, question: "How do you create a table in PostgreSQL?", answer: "You create a table using the `CREATE TABLE` statement. Example: `CREATE TABLE users (id SERIAL PRIMARY KEY, name VARCHAR(50), email VARCHAR(100));`." },
         { iKnowThis: false, question: "What is the difference between a primary key and a foreign key?", answer: "A primary key uniquely identifies records in a table. A foreign key is a field in one table that refers to the primary key in another table, creating a relationship between the two tables." }
     ]
 }
@@ -266,11 +300,11 @@ function isKnown(answer) {
 }
 function getBack() {
     homePage = true;
+    checker = false;
     if (homePage == true) {
         resetDiv[0].setAttribute("id", "hidden");
         index[0].setAttribute("id", "");
         showAnswer();
-        resetSpace[0].innerHTML = `<button id="show-list-button" onClick="createResetPage()">See what I know</button>`;
         if (knownCount > 0) {
             resetSpace[0].setAttribute("id", "");
         } else {

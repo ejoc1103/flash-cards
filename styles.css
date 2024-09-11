@@ -3,6 +3,11 @@ body {
     grid-template-columns: 1fr;
     justify-items: center;
     background-color: #ebb678;
+    color: white;
+    font-weight: 900;
+    font-size: 1.3em;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
 }
 
 button {
@@ -11,6 +16,7 @@ button {
     padding: 15px;
     border: 3px solid lightblue;
     border-radius: 20%;
+    color: white;
 }
 
 .index {
@@ -18,10 +24,11 @@ button {
     background-color: #1874a5;
     grid-template-columns: 1fr 6fr 1fr;
     grid-template-areas:
-        "header header header"
+        "categories header header"
         "categories question question"
         "categories question question";
     justify-content: space-between;
+    gap: 5px;
 }
 
 header {
@@ -34,12 +41,6 @@ header h1 {
     text-align: center;
 }
 
-section {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-}
-
 main {
     display: flex;
     flex-direction: column;
@@ -47,6 +48,7 @@ main {
     text-align: center;
     justify-content: space-evenly;
     align-items: center;
+    gap: 5px;
 }
 
 #main-section {
@@ -56,6 +58,7 @@ main {
     align-items: center;
     background-color: #e07b39;
     padding: 10%;
+    gap: 5px;
 }
 
 section p {
@@ -134,5 +137,7 @@ section p {
 }
 
 .reset button {
-    background-color: rgb(104, 104, 130);
+    background-color: green;
+    color: yellow;
+    border-color: yellow;
 }

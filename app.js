@@ -70,8 +70,8 @@ const index = document.getElementsByClassName("index");
 const question = document.getElementById('question');
 const category = document.getElementById("category");
 const iKnowThisButton = document.getElementById("answer-space");
-const resetSpace = document.getElementById("known-list-link");
-const linkToKnownList = document.getElementById("reset-space");
+const linkToKnownList = document.getElementById("known-list-link");
+const resetSpace = document.getElementsByClassName("reset-space");
 const makeKnownList = document.getElementById("reset-list");
 const knownCounter = document.getElementById("known-counter");
 const flipAnswer = document.getElementById("flip-question-answer");
@@ -99,7 +99,12 @@ if (homePage == true) {
     resetDiv[0].setAttribute("id", "hidden");
     index[0].setAttribute("id", "");
     showAnswer();
-    resetSpace.innerHTML = `<button id="show-list-button" onClick="createResetPage()">See what I know</button>`;
+    linkToKnownList.innerHTML = `<button id="show-list-button" onClick="createResetPage()">See what I know</button>`;
+    if (knownCount == 0) {
+        resetSpace[0].setAttribute("id", "hidden");
+    } else {
+        resetSpace[0].setAttribute("id", "");
+    }
 }
 
 
@@ -172,8 +177,13 @@ function showAnswer() {
     if (checker == true) {
         checker = false;
         makeAnswerButton(checker);
-        iKnowThisButton.innerHTML = `<button id="i-know-this" onclick="isKnown()">I Know This</button>`
+        iKnowThisButton.innerHTML = `<button id="i-know-this" onclick="isKnown('answer')">I Know This</button>`
         question.innerHTML = currentQuestion.answer;
+        if (knownCount == 0) {
+            resetSpace[0].setAttribute("id", "hidden");
+        } else {
+            resetSpace[0].setAttribute("id", "");
+        }
     } else if (checker == false) {
         checker = true;
         makeAnswerButton(checker);
@@ -210,14 +220,13 @@ function selectCategory(name) {
 
 
 // initialize array to keep track of known questions Adds buttons and changes stats accordingly
-function isKnown() {
-    console.log(catName);
+function isKnown(answer) {
     let tempKnownCount = 0;
-
-    currentQuestion.iKnowThis = true;
+    if (answer != null) {
+        currentQuestion.iKnowThis = true;
+    }
     let thisCollection;
     if (catName == "all") {
-
         allCollection.questions.forEach(question => {
             if (question.iKnowThis) {
                 tempKnownCount++;
@@ -247,8 +256,10 @@ function isKnown() {
     }
 
     knownCounter.innerHTML = `<h2>Current Subject: ${formalCatName}</h2>\n<p>You have marked ${knownCount} questions as known out of ${thisCollection.questions.length}</p>`;
-    if (knownCount == 1 && tempKnownCount == 1) {
-        resetSpace.innerHTML += `\n<button id="reset-space" onclick="resetAll()">Reset List</button>`;
+    if (knownCount == 0) {
+        resetSpace[0].setAttribute("id", "hidden");
+    } else {
+        resetSpace[0].setAttribute("id", "");
     }
     nextQuestion();
 
@@ -259,8 +270,12 @@ function getBack() {
         resetDiv[0].setAttribute("id", "hidden");
         index[0].setAttribute("id", "");
         showAnswer();
-        resetSpace.innerHTML = `<button id="show-list-button" onClick="createResetPage()">See what I know</button>`;
-        resetSpace.innerHTML += `\n<button id="reset-space" onclick="resetAll()">Reset List</button>`;
+        resetSpace[0].innerHTML = `<button id="show-list-button" onClick="createResetPage()">See what I know</button>`;
+        if (knownCount > 0) {
+            resetSpace[0].setAttribute("id", "");
+        } else {
+            resetSpace[0].setAttribute("id", "hidden");
+        }
 
     }
 }

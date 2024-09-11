@@ -2,7 +2,6 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
-    margin: 20px 50px;
     background-color: #ebb678;
 }
 
@@ -17,16 +16,22 @@ button {
 .index {
     display: grid;
     background-color: #1874a5;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 1fr 6fr 1fr;
     grid-template-areas:
-        "link header stats"
-        "categories question question"
-        "categories question question";
+        "header header header"
+        "categories question blank"
+        "categories question blank";
     justify-content: space-between;
 }
 
 header {
     grid-area: header;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+}
+
+header h1 {
+    text-align: center;
 }
 
 section {
@@ -38,12 +43,11 @@ section {
 main {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     grid-area: question;
     color: rgb(31, 32, 32);
     text-align: center;
-    margin: 50px 40px;
-    width: 60%;
+    margin: 2% 5%;
 }
 
 #main-section {
@@ -51,7 +55,8 @@ main {
     justify-content: center;
     align-items: center;
     background-color: #e07b39;
-    height: 50%;
+    margin: 5%;
+    flex-grow: 100;
 }
 
 #answer-space {
@@ -84,7 +89,7 @@ section p {
 
 
 
-#reset-space {
+.reset-space {
     margin: 5px;
     padding: 10px 30px;
 }
@@ -119,6 +124,7 @@ section p {
 }
 
 #know-list-link {
+    display: grid;
     grid-area: link;
 }
 
